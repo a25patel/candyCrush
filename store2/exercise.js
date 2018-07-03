@@ -45,23 +45,73 @@ console.log(updatingData2(store2));
 // }
 function loopingData1(store2) {
   var dates = store2['sale dates']['Caramel Twists'];
-   
+  var objDates = {};
+  for (var i = 0; i < dates.length; i++) {
+    var count = 0;
+    for (var j = 0; j < dates.length; j++) {
+      if (dates[i] === dates[j]) {
+        count ++;
+      }
+    }
+    if (count > 0) {
+      objDates[dates[i]] = count;
+    }
+  }
+  return objDates;
 }
 
+console.log(loopingData1(store2));
 // Iterate over store2's sale dates data to find which day had the most total number of sales. Return the date with the most sales.
 function loopingData2() {
-
+  // Variables Made
+  var dates = store2['sale dates'];
+  var objDates = {};
+  var arr = Object.keys(dates);
+  var newDates = [];
+  // Create one long array of all dates
+  for (var i = 0; i < arr.length; i++) {
+    newDates = newDates.concat(dates[arr[i]]);
+  }
+  // iterate through long array creating an object of date:count
+  for (var i = 0; i < newDates.length; i++) {
+    var count = 0;
+    for (var j = 0; j < newDates.length; j++) {
+      if (newDates[i] === newDates[j]) {
+        count ++;
+      }
+    }
+    if (count > 0) {
+      objDates[newDates[i]] = count;
+    }
+  }
+  // find date with largest count
+  var value = 0;
+  for (var key in objDates) {
+    if (objDates[key] > value) {
+      value = objDates[key];
+    }
+  }
+  // return the date with the largest count
+  for (var key in objDates) {
+    if (value === objDates[key]) {
+      return key;
+    }
+  }
 }
 
+console.log(loopingData2(store2));
 /////////// CHALLENGE ///////////
-
 // Create and return an object containing the amounts that store2 made by selling each type of candy. Round each number to 2 decimal points.
 // Example:
 // {
 //   'Caramel Twists': 14.15,
 //   'Peppermint Poppers': 20.51
 // }
-function challenge1() {
+// 1. find length of sales dates of each candy
+// 2. multiple length by price of candy
+// 3. insert candy name and total price into obj
+function challenge1(store2) {
+  var finalObj = {};
 
 }
 
