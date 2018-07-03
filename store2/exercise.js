@@ -107,15 +107,19 @@ console.log(loopingData2(store2));
 //   'Caramel Twists': 14.15,
 //   'Peppermint Poppers': 20.51
 // }
-// 1. find length of sales dates of each candy
-// 2. multiple length by price of candy
-// 3. insert candy name and total price into obj
 function challenge1(store2) {
   var finalObj = {};
-
+  var candy = store2['inventory prices'];
+  var dates = store2['sale dates'];
+  for (var key in dates) {
+    var length = dates[key].length;
+    var price = candy[key] * length;
+    finalObj[key] = price.toFixed(2);
+  }
+  return finalObj;
 }
 
-
+console.log(challenge1(store2));
 // module.exports = {
 //   accessesingData1,
   // accessesingData2,
